@@ -1,0 +1,38 @@
+{
+  "name": "cardoctor-comet-chat",
+  "version": "1.0.17",
+  "description": "cardoctor cometchat npm",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "author": "Tuan Nguyen",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --external react,react-dom,@cometchat/chat-uikit-react,@cometchat/chat-sdk-javascript && npm run copy-css",
+    "prepublishOnly": "npm run build",
+    "copy-css": "cp -r src/CometChat/styles dist/"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuanpinggo/cardoctor-call-chat.git"
+  },
+  "devDependencies": {
+    "@types/react": "^19.1.9",
+    "react": "^19.1.1",
+    "tsup": "^8.5.0",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@cometchat/calls-sdk-javascript": "^4.1.0",
+    "@cometchat/chat-uikit-react": "^6.2.0"
+  },
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "@cometchat/chat-uikit-react": ">=4.1.0",
+    "@cometchat/chat-sdk-javascript": ">=6.2.0"
+  },
+  "bugs": {
+    "url": "https://github.com/tuanpinggo/cardoctor-call-chat/issues"
+  },
+  "homepage": "https://github.com/tuanpinggo/cardoctor-call-chat#readme"
+}
