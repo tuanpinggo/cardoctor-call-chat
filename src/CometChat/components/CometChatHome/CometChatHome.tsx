@@ -1557,7 +1557,8 @@ function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, ena
             onClick={() => setAppState({ type: 'updateSideComponent', payload: { visible: false, type: '' } })} 
             style={{
               border: "none",
-              background: "transparent"
+              background: "transparent",
+              cursor: "pointer"
             }}
           >
             <img
