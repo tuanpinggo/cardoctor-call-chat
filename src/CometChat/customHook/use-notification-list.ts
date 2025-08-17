@@ -1,12 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
  
 import { CometChat } from '@cometchat/chat-sdk-javascript'; 
-import { get } from 'lodash';
 
 export function useCometChatNotificationList(limit: number = 50, unRead: boolean = false){
 
   const [conversations, setConversations] = useState<CometChat.Conversation[]>([]);
-    const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
 
   const conversationsRequest = useRef(
@@ -18,10 +17,11 @@ export function useCometChatNotificationList(limit: number = 50, unRead: boolean
   );
 
   const checkHasMore = () => {
-    if (
-      get(conversationsRequest.current, 'pagination.current_page', 1) >=
-      get(conversationsRequest.current, 'pagination.total_pages', 1)
-    ) {
+    const req = conversationsRequest.current as any;
+    const currentPage = req?.pagination?.current_page ?? 1;
+    const totalPages = req?.pagination?.total_pages ?? 1;
+
+    if ( currentPage >= totalPages ) {
       setHasMore(false);
     } else {
       setHasMore(true);

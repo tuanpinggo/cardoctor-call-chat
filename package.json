@@ -1,6 +1,6 @@
 {
   "name": "cardoctor-comet-chat",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "description": "cardoctor cometchat npm",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -22,7 +22,6 @@
     "url": "git+https://github.com/tuanpinggo/cardoctor-call-chat.git"
   },
   "devDependencies": {
-    "@types/lodash.get": "^4.4.9",
     "@types/react": "^19.1.9",
     "react": "^19.1.1",
     "tsup": "^8.5.0",
@@ -30,8 +29,7 @@
   },
   "dependencies": {
     "@cometchat/calls-sdk-javascript": "^4.1.0",
-    "@cometchat/chat-uikit-react": "^6.2.0",
-    "lodash.get": "^4.4.2"
+    "@cometchat/chat-uikit-react": "^6.2.0"
   },
   "peerDependencies": {
     "@cometchat/chat-sdk-javascript": ">=6.2.0",
