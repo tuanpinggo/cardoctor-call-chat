@@ -73,7 +73,7 @@ function CometChatApp({ user, group }: CometChatAppProps) {
               console.log(file)
               return {fileUrl: "http://45.76.162.214/file-sample_150kB.pdf"}
             }}
-            isCop={true}
+            enableUploadContract={true}
           /> : <LoginPlaceholder />
         }
       </AppContextProvider>

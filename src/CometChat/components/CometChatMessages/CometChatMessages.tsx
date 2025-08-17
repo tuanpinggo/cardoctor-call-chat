@@ -25,12 +25,12 @@ interface MessagesViewProps {
   searchKeyword?: string;
   handleUpload?: (file: File) => Promise<UploadFileContractResult>;
   titleView?: React.JSX.Element;
-  isCop?: boolean
+  enableUploadContract?: boolean
 }
 
 export const CometChatMessages = (props: MessagesViewProps) => {
   const { chatFeatures, callFeatures, layoutFeatures } = useCometChatContext();
-  const {handleUpload, titleView, isCop} = props
+  const {handleUpload, titleView, enableUploadContract} = props
   const {
     user,
     group,
@@ -189,7 +189,7 @@ export const CometChatMessages = (props: MessagesViewProps) => {
             hideAudioAttachmentOption={chatFeatures && !chatFeatures?.coreMessagingExperience?.audioSharing}
             hideImageAttachmentOption={chatFeatures && !chatFeatures?.coreMessagingExperience?.photosSharing}
             auxiliaryButtonView={
-              isCop ? CometChatUploadContract(handleUpload, group, setKeyRef) : undefined
+              enableUploadContract ? CometChatUploadContract(handleUpload, group, setKeyRef) : undefined
             }
           />
         </div>

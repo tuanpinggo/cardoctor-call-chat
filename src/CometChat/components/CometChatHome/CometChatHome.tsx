@@ -70,12 +70,12 @@ interface CometChatHomeProps {
   defaultGroup?: CometChat.Group;
   handleUpload?: (file: File) => Promise<UploadFileContractResult>;
   titleView?: React.JSX.Element;
-  isCop?: boolean
+  enableUploadContract?: boolean
 }
 
 const MOBILE_BREAKPOINT: number = 768;
 
-function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, isCop = false }: CometChatHomeProps) {
+function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, enableUploadContract = false }: CometChatHomeProps) {
   const { chatFeatures, styleFeatures, layoutFeatures } = useCometChatContext();
   const [loggedInUser, setLoggedInUser] = useState<CometChat.User | null>(null);
   const [group, setGroup] = useState<CometChat.Group>();
@@ -601,7 +601,7 @@ function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, isC
         searchKeyword={appState.goToMessageId ? appState.searchKeyword : undefined}
         handleUpload={handleUpload}
         titleView={titleView || undefined}
-        isCop={isCop}
+        enableUploadContract={enableUploadContract}
       />
     );
     if (
@@ -622,7 +622,7 @@ function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, isC
           searchKeyword={appState.goToMessageId ? appState.searchKeyword : undefined}
           handleUpload={handleUpload}
           titleView={titleView || undefined}
-          isCop={isCop}
+          enableUploadContract={enableUploadContract}
         />
       );
     }

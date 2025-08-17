@@ -1,10 +1,11 @@
 {
   "name": "cardoctor-comet-chat",
-  "version": "1.0.17",
+  "version": "1.0.19",
   "description": "cardoctor cometchat npm",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Tuan Nguyen",
+  "keywords": ["cardoctor","cometchat","comet chat","comet"],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --external react,react-dom,@cometchat/chat-uikit-react,@cometchat/chat-sdk-javascript && npm run copy-css",
     "prepublishOnly": "npm run build",

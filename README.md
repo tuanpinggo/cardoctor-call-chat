@@ -107,7 +107,7 @@ Là Component hiển thị khung chat
 <CometChatHome
 	defaultGroup={group}
 	handleUpload={async (file: File) => {}}
-	isCop={true}
+	enableUploadContract={true}
 />
 ```
 
@@ -115,5 +115,5 @@ Là Component hiển thị khung chat
 ```
 defaultGroup: Group | undefined
 handleUpload: ((file: File) => Promise<UploadFileContractResult>) | undefined
-isCop: boolean | undefined
+enableUploadContract: boolean | undefined
 ```
