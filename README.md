@@ -57,15 +57,19 @@ error: CometChat.CometChatException | undefined
 ###### Usage
 Sử dụng để lấy tin nhắn chưa đọc dùng làm thông báo
 ```
-const {conversation,fetchNext} = useCometChatNotificationList(30)
+const {conversation,fetchNext} = useCometChatNotificationList(30,true)
  ```
 ###### Parameters 
 ```
 limit?: number
+unRead?: boolean
   ```
 ###### Return
 ```
 conversation: CometChat.Conversation[] | undefined
+hasMore: boolean
+loading: boolean
+readAll: () => void
 fetchNext: () => Promise<void>
 ```
 #### II. Real Time Hooks

@@ -1,30 +1,63 @@
 import { useEffect, useRef, useState } from 'react';
  
-import { CometChat } from '@cometchat/chat-sdk-javascript';
- 
-export function useCometChatNotificationList(limit: number = 50){
+import { CometChat } from '@cometchat/chat-sdk-javascript'; 
+import { get } from 'lodash';
 
-  const [conversation, setConversation] = useState<CometChat.Conversation[]>([]);
+export function useCometChatNotificationList(limit: number = 50, unRead: boolean = false){
+
+  const [conversations, setConversations] = useState<CometChat.Conversation[]>([]);
+    const [hasMore, setHasMore] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const conversationsRequest = useRef(
     new CometChat.ConversationsRequestBuilder()
       .setLimit(limit) // customize as needed (max 50)
-      .setUnread(true)
+      .setUnread(unRead)
       .setConversationType('group')
       .build(),
   );
-  
-  const fetchConversations = async () => {
-    try {
-      const conversationList = await conversationsRequest.current.fetchNext();
-      setConversation(conversationList);
-    } catch (error) {
-      console.error('Failed to fetch conversations:', error);
+
+  const checkHasMore = () => {
+    if (
+      get(conversationsRequest.current, 'pagination.current_page', 1) >=
+      get(conversationsRequest.current, 'pagination.total_pages', 1)
+    ) {
+      setHasMore(false);
+    } else {
+      setHasMore(true);
     }
   };
+  const fetchConversations = async () => {
+    try {
+      setLoading(true);
+      const conversationList = await conversationsRequest.current.fetchNext();
+      setConversations(conversationList);
+      checkHasMore();
+    } catch (error) {
+      console.error('Failed to fetch conversations:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   const fetchNext = async () => {
-    const conversationList = await conversationsRequest.current.fetchNext();
-    setConversation(conversationList);
+    try {
+      setLoading(true);
+      const conversationList = await conversationsRequest.current.fetchNext();
+      setConversations((prev) => [...prev, ...conversationList]);
+      checkHasMore();
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const readAll = () => {
+    conversations.forEach((conversation) => {
+      const lastMessage = conversation.getLastMessage();
+      if (lastMessage) {
+        CometChat.markAsRead(lastMessage);
+      }
+    });
   };
 
   useEffect(() => {
@@ -32,8 +65,11 @@ export function useCometChatNotificationList(limit: number = 50){
   }, []);
  
   return {
-    conversation,
+    conversations,
+    hasMore,
+    loading,
     fetchNext,
+    readAll,
   };
 };
  

@@ -1,11 +1,16 @@
 {
   "name": "cardoctor-comet-chat",
-  "version": "1.0.20",
+  "version": "1.0.21",
   "description": "cardoctor cometchat npm",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "author": "Tuan Nguyen",
-  "keywords": ["cardoctor","cometchat","comet chat","comet"],
+  "keywords": [
+    "cardoctor",
+    "cometchat",
+    "comet chat",
+    "comet"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --external react,react-dom,@cometchat/chat-uikit-react,@cometchat/chat-sdk-javascript && npm run copy-css",
     "prepublishOnly": "npm run build",
@@ -17,6 +22,7 @@
     "url": "git+https://github.com/tuanpinggo/cardoctor-call-chat.git"
   },
   "devDependencies": {
+    "@types/lodash.get": "^4.4.9",
     "@types/react": "^19.1.9",
     "react": "^19.1.1",
     "tsup": "^8.5.0",
@@ -24,13 +30,14 @@
   },
   "dependencies": {
     "@cometchat/calls-sdk-javascript": "^4.1.0",
-    "@cometchat/chat-uikit-react": "^6.2.0"
+    "@cometchat/chat-uikit-react": "^6.2.0",
+    "lodash.get": "^4.4.2"
   },
   "peerDependencies": {
-    "react": ">=18.0.0",
-    "react-dom": ">=18.0.0",
+    "@cometchat/chat-sdk-javascript": ">=6.2.0",
     "@cometchat/chat-uikit-react": ">=4.1.0",
-    "@cometchat/chat-sdk-javascript": ">=6.2.0"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "bugs": {
     "url": "https://github.com/tuanpinggo/cardoctor-call-chat/issues"
