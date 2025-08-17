@@ -53,7 +53,92 @@ group: CometChat.Group | undefined;
 loading: boolean;
 error: CometChat.CometChatException | undefined
 ```
-#### II. Components
+##### 3. useCometChatNotificationList
+###### Usage
+Sử dụng để lấy tin nhắn chưa đọc dùng làm thông báo
+```
+const { unRead} = useCometChatNotificationList(30)
+ ```
+###### Parameters 
+```
+limit?: number
+  ```
+###### Return
+```
+unRead: CometChat.Conversation[] | undefined
+```
+#### II. Real Time Hooks
+##### 1. useCometChatRealTimeMessage
+###### Usage
+Sử dụng để lấy real time các trạng thái tin nhắn
+```
+const {
+	textMessageReceived,
+    mediaMessageReceived,
+    customMessageReceived,
+    messageReceipt,
+    messagesRead,
+    typingIndicator,
+    typingEnded,
+    messageDeleted,
+    messageEdited,
+    interactiveMessageReceived,
+    interactiveMessageCompleted,
+    transientMessageReceived,
+    messageReactionAdded,
+    messageReactionRemoved
+} = useCometChatRealTimeMessage("blo")
+ ```
+###### Parameters 
+```
+uniqueId?: string
+  ```
+###### Return
+```
+textMessageReceived: CometChat.TextMessage | undefined
+mediaMessageReceived: CometChat.MediaMessage | undefined
+customMessageReceived: CometChat.CustomMessage | undefined
+messageReceipt: CometChat.MessageReceipt | undefined
+messagesRead: CometChat.MessageReceipt | undefined
+typingIndicator: CometChat.TypingIndicator | undefined
+typingEnded: CometChat.TypingIndicator | undefined
+messageDeleted: CometChat.BaseMessage | undefined
+messageEdited: CometChat.BaseMessage | undefined
+interactiveMessageReceived: CometChat.InteractiveMessage | undefined
+interactiveMessageCompleted: CometChat.InteractionReceipt | undefined
+transientMessageReceived: CometChat.TransientMessage | undefined
+messageReactionAdded: CometChat.ReactionEvent | undefined
+messageReactionRemoved: CometChat.ReactionEvent | undefined
+```
+##### 2. useCometChatRealTimeGroup
+###### Usage
+Sử dụng để lấy tin nhắn các trạng thái Real Time của Group
+```
+const {
+	groupMemberJoined,
+    groupMemberLeft,
+    groupMemberKicked,
+    groupMemberBanned,
+    groupMemberUnbanned,
+    groupMemberScopeChanged,
+    memberAddedToGroup
+} = useCometChatRealTimeGroup()
+ ```
+###### Parameters 
+```
+uniqueId?: string
+  ```
+###### Return
+```
+groupMemberJoined: IOnGroupMemberJoined | undefined
+groupMemberLeft: IGroupMemberLeft | undefined
+groupMemberKicked: IGroupMemberKicked | undefined
+groupMemberBanned: IGroupMemberBanned | undefined
+groupMemberUnbanned: IGroupMemberUnbanned | undefined
+groupMemberScopeChanged: IGroupMemberScopeChanged | undefined
+memberAddedToGroup: IMemberAddedToGroup | undefined
+```
+#### III. Components
 ##### 1. CometChatProvider
 ###### Usage
 Là provider bọc toàn bộ cometchat

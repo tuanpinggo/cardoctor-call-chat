@@ -2,10 +2,10 @@ import { useEffect, useState } from "react";
 import { CometChat } from "@cometchat/chat-sdk-javascript";
 
 export function useCometChatRealTimeMessage(uniqueId: string = "UNIQUE_LISTENER_ID") {
-  const [textMessageReceived,setTextMessageReceived] = useState< CometChat.TextMessage | undefined>();
-  const [mediaMessageReceived,setMediaMessageReceived] = useState< CometChat.MediaMessage | undefined>();
-  const [customMessageReceived,setCustomMessageReceived] = useState< CometChat.CustomMessage | undefined>();
-  const [messageReceipt,setmessageReceipt] = useState< CometChat.MessageReceipt | undefined>();
+  const [textMessageReceived,setTextMessageReceived] = useState<CometChat.TextMessage | undefined>();
+  const [mediaMessageReceived,setMediaMessageReceived] = useState<CometChat.MediaMessage | undefined>();
+  const [customMessageReceived,setCustomMessageReceived] = useState<CometChat.CustomMessage | undefined>();
+  const [messageReceipt,setmessageReceipt] = useState<CometChat.MessageReceipt | undefined>();
   const [messagesRead,setmessagesRead] = useState<CometChat.MessageReceipt | undefined>();
   const [typingIndicator,settypingIndicator] = useState<CometChat.TypingIndicator | undefined>();
   const [typingEnded,settypingEnded] = useState<CometChat.TypingIndicator | undefined>();

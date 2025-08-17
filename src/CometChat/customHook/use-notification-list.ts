@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import {CometChat, Conversation} from '@cometchat/chat-sdk-javascript'
+import {CometChat} from '@cometchat/chat-sdk-javascript'
 
 export function useCometChatNotificationList(limit: number = 50){
-    const [unRead,setUnRead] = useState<Conversation[] | undefined>()
+    const [unRead,setUnRead] = useState<CometChat.Conversation[] | undefined>()
     const getUnReadMessage = async () => {
         try {
             const conversationsRequest = new CometChat.ConversationsRequestBuilder()
