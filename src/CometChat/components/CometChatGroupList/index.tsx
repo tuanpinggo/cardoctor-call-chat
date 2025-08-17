@@ -7,6 +7,7 @@ interface ICometChatListGroup {
     tags?: string[];
     hideSearch?: boolean;
     headerView?: React.JSX.Element
+    showScrollBar?: boolean
 }
  
 export const CometChatListGroup = ({
@@ -14,7 +15,8 @@ export const CometChatListGroup = ({
     limit=30,
     tags=[""],
     hideSearch=false,
-    headerView
+    headerView,
+    showScrollBar=false
 }: ICometChatListGroup) => {
     return (
         <>
@@ -28,6 +30,7 @@ export const CometChatListGroup = ({
                 }
                 onItemClick={e => setGroup(e)}
                 headerView={headerView}
+                showScrollbar={showScrollBar}
             />
  
         </>

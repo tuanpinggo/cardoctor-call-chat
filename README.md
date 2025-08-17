@@ -23,7 +23,7 @@ const {user, loading} = useCallChatInit({
     appId: "",
     region: "",
     authToken: ""
-  })
+})
  ```
 ###### Parameters 
 ```
@@ -78,7 +78,7 @@ fetchNext: () => Promise<void>
 Sử dụng để lấy real time các trạng thái tin nhắn
 ```
 const {
-	textMessageReceived,
+    textMessageReceived,
     mediaMessageReceived,
     customMessageReceived,
     messageReceipt,
@@ -120,7 +120,7 @@ messageReactionRemoved: CometChat.ReactionEvent | undefined
 Sử dụng để lấy tin nhắn các trạng thái Real Time của Group
 ```
 const {
-	groupMemberJoined,
+    groupMemberJoined,
     groupMemberLeft,
     groupMemberKicked,
     groupMemberBanned,
@@ -170,6 +170,7 @@ Là Component lấy danh sách các group chat theo nhu cầu
 	tags={[""]}
 	hideSearch={true}
 	headerView={<h2>abc</h2>}
+	showScrollBar={false}
 />
 ```
 
@@ -180,6 +181,7 @@ limit?: number;
 tags?: string[];
 hideSearch?: boolean;
 headerView?: React.JSX.Element
+showScrollBar?: boolean
 ```
 Default Value
 ```
@@ -187,6 +189,7 @@ limit = 30
 tags = [""]
 hideSearch=false
 headerView=null
+showScrollBar=false
 ```
 
 ##### 4. CometChatHome
@@ -198,6 +201,9 @@ Là Component hiển thị khung chat
 	defaultGroup={group}
 	handleUpload={async (file: File) => {}}
 	enableUploadContract={true}
+	titleView={<span>title here</span>}
+	showBackListGroupIcon={true}
+	onBackListGroup={()=>console.log("handle event onClick back icon)}
 />
 ```
 
@@ -206,4 +212,7 @@ Là Component hiển thị khung chat
 defaultGroup: Group | undefined
 handleUpload: ((file: File) => Promise<UploadFileContractResult>) | undefined
 enableUploadContract: boolean | undefined
+titleView?: React.JSX.Element;
+showBackListGroupIcon?: boolean
+onBackListGroup?: () => void;
 ```
