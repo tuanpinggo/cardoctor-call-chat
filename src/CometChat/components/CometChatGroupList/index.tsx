@@ -8,6 +8,9 @@ interface ICometChatListGroup {
     hideSearch?: boolean;
     headerView?: React.JSX.Element
     showScrollBar?: boolean
+    loadingView?:React.JSX.Element
+    emptyView?:React.JSX.Element
+    errorView?:React.JSX.Element
 }
  
 export const CometChatListGroup = ({
@@ -16,7 +19,10 @@ export const CometChatListGroup = ({
     tags=[""],
     hideSearch=false,
     headerView,
-    showScrollBar=false
+    showScrollBar=false,
+    loadingView,
+    emptyView,
+    errorView
 }: ICometChatListGroup) => {
     return (
         <>
@@ -31,6 +37,9 @@ export const CometChatListGroup = ({
                 onItemClick={e => setGroup(e)}
                 headerView={headerView}
                 showScrollbar={showScrollBar}
+                loadingView={loadingView}
+                emptyView={emptyView}
+                errorView={errorView}
             />
  
         </>

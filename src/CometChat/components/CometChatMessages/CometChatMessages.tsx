@@ -5,7 +5,6 @@ import {
   CometChatUIKit,
   getLocalizedString,
   CometChatUserEvents,
-  CometChatButton,
 } from '@cometchat/chat-uikit-react';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { CometChat } from '@cometchat/chat-sdk-javascript';

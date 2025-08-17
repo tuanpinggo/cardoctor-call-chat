@@ -172,7 +172,6 @@ export function CometChatMessageListCustom({
     });
 
     templates.push(customMessageTemplate)
-    console.log("🚀 ~ getTemplates ~ templates:", templates)
     return templates;
   };
 

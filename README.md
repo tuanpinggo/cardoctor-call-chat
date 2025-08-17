@@ -71,6 +71,7 @@ hasMore: boolean
 loading: boolean
 readAll: () => void
 fetchNext: () => Promise<void>
+refresh: () => Promise<void>
 ```
 #### II. Real Time Hooks
 ##### 1. useCometChatRealTimeMessage
@@ -215,4 +216,7 @@ enableUploadContract: boolean | undefined
 titleView?: React.JSX.Element;
 showBackListGroupIcon?: boolean
 onBackListGroup?: () => void;
+loadingView?:React.JSX.Element
+emptyView?:React.JSX.Element
+errorView?:React.JSX.Element
 ```

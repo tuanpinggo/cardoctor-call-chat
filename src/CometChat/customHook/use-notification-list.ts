@@ -60,6 +60,26 @@ export function useCometChatNotificationList(limit: number = 50, unRead: boolean
     });
   };
 
+  const refresh = async () => {
+    setLoading(true);
+    // Rebuild a fresh request to start from page 1
+    conversationsRequest.current = new CometChat.ConversationsRequestBuilder()
+      .setLimit(limit)
+      .setUnread(unRead)
+      .setConversationType('group')
+      .build();
+    try {
+      const freshList = await conversationsRequest.current.fetchNext();
+      setConversations(freshList);
+      checkHasMore();
+    } catch (error) {
+      setConversations([]);
+      console.error('Refresh failed:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   useEffect(() => {
     fetchConversations();
   }, []);
@@ -70,6 +90,7 @@ export function useCometChatNotificationList(limit: number = 50, unRead: boolean
     loading,
     fetchNext,
     readAll,
+    refresh
   };
 };
  
