@@ -1550,11 +1550,12 @@ function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, ena
 
     return (
       <>
+        {/* cho nay */}
         <div className="side-component-header">
           <div className="side-component-header__text">{getLocalizedString('group_info')}</div>
-          <div
-            className="side-component-header__icon"
-            onClick={() => setAppState({ type: 'updateSideComponent', payload: { visible: false, type: '' } })}
+          <CometChatButton 
+            iconURL={"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjRweCIgaGVpZ2h0PSIyNHB4IiB2aWV3Qm94PSIwIDAgMjQgMjQiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8dGl0bGU+SWNvbnMvMjQvQ2xvc2U8L3RpdGxlPgogICAgPGcgaWQ9Ikljb25zIiBzdHJva2U9Im5vbmUiIHN0cm9rZS13aWR0aD0iMSIgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPgogICAgICAgIDxnIGlkPSJJY29ucy8yNC9DbG9zZSIgc3Ryb2tlPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9IjEuNSI+CiAgICAgICAgICAgIDxnIGlkPSJHcm91cCIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNS4wMDAwMDAsIDUuMDAwMDAwKSI+CiAgICAgICAgICAgICAgICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIxNCIgeTI9IjE0IiBpZD0iUGF0aC05Ij48L2xpbmU+CiAgICAgICAgICAgICAgICA8bGluZSB4MT0iMCIgeTE9IjAiIHgyPSIxNCIgeTI9IjE0IiBpZD0iUGF0aC05IiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3LjAwMDAwMCwgNy4wMDAwMDApIHNjYWxlKC0xLCAxKSB0cmFuc2xhdGUoLTcuMDAwMDAwLCAtNy4wMDAwMDApICI+PC9saW5lPgogICAgICAgICAgICA8L2c+CiAgICAgICAgPC9nPgogICAgPC9nPgo8L3N2Zz4="} 
+            onClick={() => setAppState({ type: 'updateSideComponent', payload: { visible: false, type: '' } })} 
           />
         </div>
         <div className="side-component-content">
