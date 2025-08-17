@@ -5,6 +5,7 @@ import {
   CometChatUIKit,
   getLocalizedString,
   CometChatUserEvents,
+  CometChatButton,
 } from '@cometchat/chat-uikit-react';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { CometChat } from '@cometchat/chat-sdk-javascript';
@@ -25,7 +26,9 @@ interface MessagesViewProps {
   searchKeyword?: string;
   handleUpload?: (file: File) => Promise<UploadFileContractResult>;
   titleView?: React.JSX.Element;
-  enableUploadContract?: boolean
+  enableUploadContract?: boolean;
+  onBackListGroup?: () => void;
+  showBackListGroupIcon?: boolean
 }
 
 export const CometChatMessages = (props: MessagesViewProps) => {
@@ -37,10 +40,11 @@ export const CometChatMessages = (props: MessagesViewProps) => {
     onHeaderClicked,
     onThreadRepliesClick,
     showComposer,
-    onBack = () => { },
     onSearchClicked = () => { },
     goToMessageId,
     searchKeyword,
+    onBackListGroup,
+    showBackListGroupIcon
   } = props;
   const [showComposerState, setShowComposerState] = useState<boolean | undefined>(showComposer);
   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -137,19 +141,39 @@ export const CometChatMessages = (props: MessagesViewProps) => {
   return (
     <div className="cometchat-messages-wrapper">
       <div
-        className={`cometchat-header-wrapper 
-          ${!layoutFeatures.withSideBar ? 'cometchat-header-wrapper__hide-back-button' : ''}
-          ${!isMobile ? 'cometchat-header-wrapper__desktop' : ''}`}
+        className={`cometchat-header-wrapper`}
       >
         <CometChatMessageHeader
           user={user}
           group={group}
-          onBack={onBack}
-          showBackButton={(layoutFeatures && layoutFeatures.withSideBar) || isMobile}
-          showSearchOption={true}
-          onSearchOptionClicked={onSearchClicked}
-          onItemClick={determineUserOrGroupInfoVisibility}
-          auxiliaryButtonView={<></>}
+          onBack={onBackListGroup}
+          showBackButton={showBackListGroupIcon}
+          showSearchOption={false}
+          // onItemClick={determineUserOrGroupInfoVisibility}
+          auxiliaryButtonView={
+            <>
+              <button
+                onClick={onSearchClicked}
+                style={{
+                  cursor: "pointer"
+                }}
+              >
+                <img
+                  src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLXNlYXJjaC1pY29uIGx1Y2lkZS1zZWFyY2giPjxwYXRoIGQ9Im0yMSAyMS00LjM0LTQuMzQiLz48Y2lyY2xlIGN4PSIxMSIgY3k9IjExIiByPSI4Ii8+PC9zdmc+"
+                />
+              </button>
+              <button
+                onClick={determineUserOrGroupInfoVisibility}
+                style={{
+                  cursor: "pointer"
+                }}
+              >
+                <img
+                  src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWluZm8taWNvbiBsdWNpZGUtaW5mbyI+PGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMTAiLz48cGF0aCBkPSJNMTIgMTZ2LTQiLz48cGF0aCBkPSJNMTIgOGguMDEiLz48L3N2Zz4='
+                />
+              </button>
+            </>
+          }
           hideVideoCallButton={determineVideoCallVisibility()}
           hideVoiceCallButton={determineVoiceCallVisibility()}
           showConversationSummaryButton={chatFeatures && chatFeatures?.aiUserCopilot?.conversationSummary}

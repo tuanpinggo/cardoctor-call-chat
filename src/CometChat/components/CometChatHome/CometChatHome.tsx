@@ -70,12 +70,22 @@ interface CometChatHomeProps {
   defaultGroup?: CometChat.Group;
   handleUpload?: (file: File) => Promise<UploadFileContractResult>;
   titleView?: React.JSX.Element;
-  enableUploadContract?: boolean
+  enableUploadContract?: boolean;
+  onBackListGroup?: () => void;
+  showBackListGroupIcon?: boolean
 }
 
 const MOBILE_BREAKPOINT: number = 768;
 
-function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, enableUploadContract = false }: CometChatHomeProps) {
+function CometChatHome({ 
+  defaultUser, 
+  defaultGroup, 
+  handleUpload, 
+  titleView, 
+  enableUploadContract = false,
+  onBackListGroup,
+  showBackListGroupIcon
+}: CometChatHomeProps) {
   const { chatFeatures, styleFeatures, layoutFeatures } = useCometChatContext();
   const [loggedInUser, setLoggedInUser] = useState<CometChat.User | null>(null);
   const [group, setGroup] = useState<CometChat.Group>();
@@ -602,6 +612,8 @@ function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, ena
         handleUpload={handleUpload}
         titleView={titleView || undefined}
         enableUploadContract={enableUploadContract}
+        onBackListGroup={onBackListGroup}
+        showBackListGroupIcon={showBackListGroupIcon}
       />
     );
     if (
@@ -623,6 +635,8 @@ function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, ena
           handleUpload={handleUpload}
           titleView={titleView || undefined}
           enableUploadContract={enableUploadContract}
+          onBackListGroup={onBackListGroup}
+          showBackListGroupIcon={showBackListGroupIcon}
         />
       );
     }
@@ -963,11 +977,11 @@ function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, ena
           : getLocalizedString('user_details_block'),
         icon: blockIcon,
       },
-      {
-        id: 'delete',
-        name: getLocalizedString('delete_chat'),
-        icon: deleteIcon,
-      },
+      // {
+      //   id: 'delete',
+      //   name: getLocalizedString('delete_chat'),
+      //   icon: deleteIcon,
+      // },
     ];
     const [actionItems, setActionItems] = useState(actionItemsArray);
     const [showStatus, setShowStatus] = useState(true);
@@ -1002,11 +1016,11 @@ function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, ena
               name: getLocalizedString('user_details_block'),
               icon: blockIcon,
             },
-            {
-              id: 'delete',
-              name: getLocalizedString('delete_chat'),
-              icon: deleteIcon,
-            },
+            // {
+            //   id: 'delete',
+            //   name: getLocalizedString('delete_chat'),
+            //   icon: deleteIcon,
+            // },
           ]);
           user.setBlockedByMe(false);
           CometChatUserEvents.ccUserUnblocked.next(user);
@@ -1060,11 +1074,11 @@ function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, ena
               name: getLocalizedString('user_details_unblock'),
               icon: blockIcon,
             },
-            {
-              id: 'delete',
-              name: getLocalizedString('delete_chat'),
-              icon: deleteIcon,
-            },
+            // {
+            //   id: 'delete',
+            //   name: getLocalizedString('delete_chat'),
+            //   icon: deleteIcon,
+            // },
           ]);
         }
         updateUserAfterBlockUnblock(user);
@@ -1078,11 +1092,11 @@ function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, ena
               name: getLocalizedString('user_details_block'),
               icon: blockIcon,
             },
-            {
-              id: 'delete',
-              name: getLocalizedString('delete_chat'),
-              icon: deleteIcon,
-            },
+            // {
+            //   id: 'delete',
+            //   name: getLocalizedString('delete_chat'),
+            //   icon: deleteIcon,
+            // },
           ]);
         }
         updateUserAfterBlockUnblock(user);
@@ -1290,18 +1304,18 @@ function CometChatHome({ defaultUser, defaultGroup, handleUpload, titleView, ena
             return isAdminOrOwner();
           },
         },
-        {
-          id: 'deleteChat',
-          name: getLocalizedString('delete_chat'),
-          icon: deleteIcon,
-          type: 'alert',
-          onClick: () => {
-            setShowDeleteGroupChatDialog(true);
-          },
-          isAllowed: () => {
-            return true;
-          },
-        },
+        // {
+        //   id: 'deleteChat',
+        //   name: getLocalizedString('delete_chat'),
+        //   icon: deleteIcon,
+        //   type: 'alert',
+        //   onClick: () => {
+        //     setShowDeleteGroupChatDialog(true);
+        //   },
+        //   isAllowed: () => {
+        //     return true;
+        //   },
+        // },
         {
           id: 'joinLeaveGroup',
           name: getLocalizedString('leave'),
