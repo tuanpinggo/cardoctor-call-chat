@@ -3,9 +3,9 @@
 ## 🚀 Tài liệu hướng dẫn sử dụng sdk
 
 ```bash
-npm install cardoctor-call-chat
+npm install cardoctor-comet-chat
 # or
-yarn add cardoctor-call-chat
+yarn add cardoctor-comet-chat
 ```
 ### Thêm CSS 
 Thêm css vào Layout hoặc App.tsx để sử dụng toàn bộ css

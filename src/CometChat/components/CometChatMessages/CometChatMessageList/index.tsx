@@ -50,6 +50,26 @@ export function CometChatMessageListCustom({
   
   const { setAppState } = useContext(AppContext);
 
+  const getCustomFileContractOption =  (
+    loggedInUser: CometChat.User,
+    message: CometChat.BaseMessage,
+    group?: CometChat.Group
+  ) => {
+    const defaultOptions: any =
+      ChatConfigurator.getDataSource().getMessageOptions(
+        loggedInUser,
+        message,
+        group
+      );
+    let options = []
+    for(const option of defaultOptions){
+      if(option.id !== "delete"){
+        options.push(option)
+      }
+    }
+    return options
+  }
+
   const getCustomOptions = (
     loggedInUser: CometChat.User,
     message: CometChat.BaseMessage,
@@ -169,6 +189,11 @@ export function CometChatMessageListCustom({
       type: CUSTOM_MESSAGE_TYPE,
       category: CometChatUIKitConstants.MessageCategory.custom,
       contentView: (message: CometChat.BaseMessage) => getContentView(message),
+      options: (
+        loggedInUser: CometChat.User,
+        message: CometChat.BaseMessage,
+        group?: CometChat.Group
+      ) => getCustomFileContractOption(loggedInUser, message, group),
     });
 
     templates.push(customMessageTemplate)
