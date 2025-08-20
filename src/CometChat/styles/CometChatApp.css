@@ -205,6 +205,10 @@
   animation: spin 1s linear infinite;
 }
 
+.cometchat-message-information__popup-wrapper{
+  position: fixed !important;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

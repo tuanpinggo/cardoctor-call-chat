@@ -15,7 +15,7 @@ export function useCometChatUser(){
         .finally(() => setLoading(false))
     },[])
 
-    const logOutCometChat = CometChat.logout()
+    const logOutCometChat = async () => await CometChat.logout()
 
     return{
         user,

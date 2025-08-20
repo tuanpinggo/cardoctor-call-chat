@@ -22,7 +22,7 @@ export function useGroupInfo(guid: string) {
 
   useEffect(() => {
     handleGetGroup();
-  }, []);
+  }, [guid]);
 
   return {
     loading,

@@ -27,12 +27,14 @@ interface MessagesViewProps {
   titleView?: React.JSX.Element;
   enableUploadContract?: boolean;
   onBackListGroup?: () => void;
-  showBackListGroupIcon?: boolean
+  showBackListGroupIcon?: boolean;
+  AudioCallButton: React.ElementType;
+  VideoCallButton: React.ElementType;
 }
 
 export const CometChatMessages = (props: MessagesViewProps) => {
-  const { chatFeatures, callFeatures, layoutFeatures } = useCometChatContext();
-  const {handleUpload, titleView, enableUploadContract} = props
+  const { chatFeatures } = useCometChatContext();
+  const {handleUpload, titleView, enableUploadContract, AudioCallButton, VideoCallButton} = props
   const {
     user,
     group,
@@ -101,28 +103,6 @@ export const CometChatMessages = (props: MessagesViewProps) => {
     return formatters;
   }
 
-  const determineVideoCallVisibility = () => {
-    if (group) {
-      // Check group-specific video call permission
-      return !callFeatures?.voiceAndVideoCalling?.groupVideoConference;
-    } else if (user) {
-      // Check one-on-one video call permission
-      return !callFeatures?.voiceAndVideoCalling?.oneOnOneVideoCalling;
-    }
-    return true; // Default to hiding if neither user nor group
-  };
-
-  const determineVoiceCallVisibility = () => {
-    if (group) {
-      // Check group-specific voice call permission
-      return !callFeatures?.voiceAndVideoCalling?.groupVoiceConference;
-    } else if (user) {
-      // Check one-on-one voice call permission
-      return !callFeatures?.voiceAndVideoCalling?.oneOnOneVoiceCalling;
-    }
-    return true; // Default to hiding if neither user nor group
-  };
-
   const determineUserOrGroupInfoVisibility = () => {
     if (group) {
       return chatFeaturesRef.current && chatFeaturesRef.current.deeperUserEngagement?.groupInfo
@@ -151,6 +131,8 @@ export const CometChatMessages = (props: MessagesViewProps) => {
           // onItemClick={determineUserOrGroupInfoVisibility}
           auxiliaryButtonView={
             <>
+              <AudioCallButton />
+              <VideoCallButton />
               <button
                 onClick={onSearchClicked}
                 style={{
@@ -173,8 +155,8 @@ export const CometChatMessages = (props: MessagesViewProps) => {
               </button>
             </>
           }
-          hideVideoCallButton={determineVideoCallVisibility()}
-          hideVoiceCallButton={determineVoiceCallVisibility()}
+          hideVideoCallButton={true}
+          hideVoiceCallButton={true}
           showConversationSummaryButton={chatFeatures && chatFeatures?.aiUserCopilot?.conversationSummary}
           hideUserStatus={chatFeatures && !chatFeatures?.coreMessagingExperience?.userAndFriendsPresence}
           titleView={titleView}

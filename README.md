@@ -20,9 +20,9 @@ import 'cardoctor-comet-chat/dist/styles/CometChatApp.css'
 Sử dụng để khởi tạo cometChat. Dùng 1 lần duy nhất cho toàn bộ ứng dụng
 ```
 const {user, loading} = useCallChatInit({
-    appId: "",
-    region: "",
-    authToken: ""
+  appId: "",
+  region: "",
+  authToken: ""
 })
  ```
 ###### Parameters 
@@ -73,26 +73,39 @@ readAll: () => void
 fetchNext: () => Promise<void>
 refresh: () => Promise<void>
 ```
+##### 4. useCometChatUser
+###### Usage
+Sử dụng để lấy user đang login và sự kiện logout
+```
+const {user,loading,error,logOutCometChat} = useCometChatUser()
+ ```
+###### Return
+```
+user: CometChat.User | undefined
+loading: boolean
+error: boolean
+logOutCometChat: () => Promise<Object>
+```
 #### II. Real Time Hooks
 ##### 1. useCometChatRealTimeMessage
 ###### Usage
 Sử dụng để lấy real time các trạng thái tin nhắn
 ```
 const {
-    textMessageReceived,
-    mediaMessageReceived,
-    customMessageReceived,
-    messageReceipt,
-    messagesRead,
-    typingIndicator,
-    typingEnded,
-    messageDeleted,
-    messageEdited,
-    interactiveMessageReceived,
-    interactiveMessageCompleted,
-    transientMessageReceived,
-    messageReactionAdded,
-    messageReactionRemoved
+  textMessageReceived,
+  mediaMessageReceived,
+  customMessageReceived,
+  messageReceipt,
+  messagesRead,
+  typingIndicator,
+  typingEnded,
+  messageDeleted,
+  messageEdited,
+  interactiveMessageReceived,
+  interactiveMessageCompleted,
+  transientMessageReceived,
+  messageReactionAdded,
+  messageReactionRemoved
 } = useCometChatRealTimeMessage("blo")
  ```
 ###### Parameters 
@@ -121,13 +134,13 @@ messageReactionRemoved: CometChat.ReactionEvent | undefined
 Sử dụng để lấy tin nhắn các trạng thái Real Time của Group
 ```
 const {
-    groupMemberJoined,
-    groupMemberLeft,
-    groupMemberKicked,
-    groupMemberBanned,
-    groupMemberUnbanned,
-    groupMemberScopeChanged,
-    memberAddedToGroup
+  groupMemberJoined,
+  groupMemberLeft,
+  groupMemberKicked,
+  groupMemberBanned,
+  groupMemberUnbanned,
+  groupMemberScopeChanged,
+  memberAddedToGroup
 } = useCometChatRealTimeGroup()
  ```
 ###### Parameters 
@@ -205,6 +218,8 @@ Là Component hiển thị khung chat
 	titleView={<span>title here</span>}
 	showBackListGroupIcon={true}
 	onBackListGroup={()=>console.log("handle event onClick back icon)}
+  AudioCallButton={AudioCallButton}
+  VideoCallButton={VideoCallButton}
 />
 ```
 
@@ -219,4 +234,6 @@ onBackListGroup?: () => void;
 loadingView?:React.JSX.Element
 emptyView?:React.JSX.Element
 errorView?:React.JSX.Element
+AudioCallButton: React.ElementType
+VideoCallButton: React.ElementType
 ```

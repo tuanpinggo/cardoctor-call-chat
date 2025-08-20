@@ -72,7 +72,9 @@ interface CometChatHomeProps {
   titleView?: React.JSX.Element;
   enableUploadContract?: boolean;
   onBackListGroup?: () => void;
-  showBackListGroupIcon?: boolean
+  showBackListGroupIcon?: boolean;
+  AudioCallButton: React.ElementType;
+  VideoCallButton: React.ElementType;
 }
 
 const MOBILE_BREAKPOINT: number = 768;
@@ -84,7 +86,9 @@ function CometChatHome({
   titleView, 
   enableUploadContract = false,
   onBackListGroup,
-  showBackListGroupIcon
+  showBackListGroupIcon,
+  AudioCallButton,
+  VideoCallButton
 }: CometChatHomeProps) {
   const { chatFeatures, styleFeatures, layoutFeatures } = useCometChatContext();
   const [loggedInUser, setLoggedInUser] = useState<CometChat.User | null>(null);
@@ -614,6 +618,8 @@ function CometChatHome({
         enableUploadContract={enableUploadContract}
         onBackListGroup={onBackListGroup}
         showBackListGroupIcon={showBackListGroupIcon}
+        AudioCallButton={AudioCallButton}
+        VideoCallButton={VideoCallButton}
       />
     );
     if (
@@ -637,6 +643,8 @@ function CometChatHome({
           enableUploadContract={enableUploadContract}
           onBackListGroup={onBackListGroup}
           showBackListGroupIcon={showBackListGroupIcon}
+          AudioCallButton={AudioCallButton}
+          VideoCallButton={VideoCallButton}
         />
       );
     }
